@@ -1,0 +1,29 @@
+<% content_for :title, "Posts" %>
+
+<div class="posts-header">
+  <h1>Latest Posts</h1>
+  <% if user_signed_in? %>
+    <%= link_to "Write a Post", new_post_path, class: "btn-primary" %>
+  <% end %>
+</div>
+
+<div class="posts-grid">
+  <% @posts.each do |post| %>
+    <article class="post-card">
+      <%= link_to post_path(post) do %>
+        <h2 class="post-card-title"><%= post.title %></h2>
+      <% end %>
+      <p class="post-card-meta">
+        By <strong><%= post.user.name %></strong> &middot; 
+        <%= time_ago_in_words(post.created_at) %> ago
+      </p>
+      <p class="post-card-excerpt"><%= truncate(post.body, length: 200) %></p>
+    </article>
+  <% end %>
+</div>
+
+<% if @posts.empty? %>
+  <p style="text-align: center; color: var(--color-text-muted); margin-top: 3rem;">
+    No posts yet. <% if user_signed_in? %><%= link_to "Be the first to write one!", new_post_path %><% end %>
+  </p>
+<% end %>
