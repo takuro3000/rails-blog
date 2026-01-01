@@ -5,6 +5,15 @@ Rails.application.routes.draw do
     resources :comments, only: %i[ create destroy ]
   end
 
+  resources :notifications, only: %i[ index ] do
+    member do
+      patch :mark_as_read
+    end
+    collection do
+      patch :mark_all_as_read
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
