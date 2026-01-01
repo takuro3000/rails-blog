@@ -1,0 +1,19 @@
+{
+  "name": "Rails Blog",
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.yml"],
+  "service": "web",
+  "workspaceFolder": "/rails-blog",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "Shopify.ruby-extensions-pack"
+      ],
+      "settings": {
+        "rubyLsp.rubyVersionManager": "none"
+      }
+    }
+  },
+  "postCreateCommand": "bundle install"
+}
+
